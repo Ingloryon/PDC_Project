@@ -20,7 +20,7 @@ def writeChannelOutput():
 	encodedText = encodeText()
 	output = waveformFormer(encodedText)
 
-	with open("files/bytes_to_transmit.txt", "w") as f:
+	with open("files/channel_input.txt", "w") as f:
 		f.write(output)
 
 
