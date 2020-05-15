@@ -14,7 +14,10 @@ def waveformFormer( encodedText ):
 
 	w = []
 
-	# TODO: How do we want to transmite our characters ?
+	# TODO: How do we want to transmit our characters ? 
+	#-> sampling freq / period
+	#-> nb of samples per bit
+	#-> Best techniques to counter AWGN effect
 
 def writeChannelOutput():
 	encodedText = encodeText()
