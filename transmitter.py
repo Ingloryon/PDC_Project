@@ -21,13 +21,15 @@ def sinusoid(f, sampleNb, samplingPeriod):
 	
 # Takes an array of binary UTF-8 characters, returns ??
 def waveformFormer( encodedText ):
-
-	w = []
-
-	# TODO: How do we want to transmit our characters ? 
-	#-> sampling freq / period
-	#-> nb of samples per bit
-	#-> Best techniques to counter AWGN effect
+    waves = []
+    
+    for bit in encodedText:
+        if x == 0:
+            waves.append(sinusoid(2000, sampleNb, samplingPeriod))
+        else:
+            waves.append(sinusoid(4000, sampleNb, samplingPeriod))
+            
+    return np.ravel(np.array(w))
 
 # Takes a string and writes it in the file corresponding to the channel input
 def writeChannelInput( output ):
@@ -39,7 +41,12 @@ samplingFrequency = 12000 #nombres déterminés arbitrairement, comment decider 
 samplingPeriod = 1 / samplingFrequency
 		
 encodedText = encodeText( getTextToTransmit() )
-writeChannelInput( waveformFormer(encodedText) )
+writeChannelInput( waveformFormer(encodedText.astype("str")) )
+
+# TODO: How do we want to transmit our characters ? 
+#-> sampling freq / period
+#-> nb of samples per bit
+#-> Best techniques to counter AWGN effect
 
 
 
