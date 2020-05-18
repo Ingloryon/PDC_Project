@@ -47,6 +47,7 @@ writeChannelInput( waveformFormer(encodedText).astype("str") )
 #-> sampling freq / period
 #-> nb of samples per bit
 #-> Best techniques to counter AWGN effect
+#-> Frequencies given to the sinusoids
 
 
 
