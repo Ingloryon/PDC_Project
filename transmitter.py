@@ -13,6 +13,12 @@ def encodeText( text ):
 	#each character is a vector of 8 bits
 	return np.unpackbits(np.fromstring(text, dtype="uint8"))
 	
+# Takes as input the frequency f of the sinusoid, the number of samples and the sampling period.
+# Returns the corresponding sinusoid function
+def sinusoid(f, sampleNb, samplingPeriod):
+    x = np.arange(sampleNb) * samplingPeriod
+    return np.sin(2 * np.pi * f * x)
+	
 # Takes an array of binary UTF-8 characters, returns ??
 def waveformFormer( encodedText ):
 
@@ -28,8 +34,12 @@ def writeChannelInput( output ):
 	with open("files/channel_input.txt", "w") as f:
 		f.write(output)
 
+sampleNb = 100 
+samplingFrequency = 12000 #nombres déterminés arbitrairement, comment decider des "bonnes valeurs" ?
+samplingPeriod = 1 / samplingFrequency
 		
 encodedText = encodeText( getTextToTransmit() )
 writeChannelInput( waveformFormer(encodedText) )
+
 
 
