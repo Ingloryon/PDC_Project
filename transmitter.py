@@ -41,7 +41,7 @@ samplingFrequency = 12000 #nombres déterminés arbitrairement, comment decider 
 samplingPeriod = 1 / samplingFrequency
 		
 encodedText = encodeText( getTextToTransmit() )
-writeChannelInput( waveformFormer(encodedText.astype("str")) )
+writeChannelInput( waveformFormer(encodedText).astype("str") )
 
 # TODO: How do we want to transmit our characters ? 
 #-> sampling freq / period
