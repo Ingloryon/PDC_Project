@@ -24,12 +24,12 @@ def waveformFormer( encodedText ):
     waves = []
     
     for bit in encodedText:
-        if x == 0:
+        if bit == 0:
             waves.append(sinusoid(2000, sampleNb, samplingPeriod))
         else:
             waves.append(sinusoid(4000, sampleNb, samplingPeriod))
             
-    return np.ravel(np.array(w))
+    return np.ravel(np.array(waves))
 
 # Takes a string and writes it in the file corresponding to the channel input
 def writeChannelInput( output ):
@@ -37,7 +37,7 @@ def writeChannelInput( output ):
 		f.write(output)
 
 sampleNb = 100 
-samplingFrequency = 12000 #nombres déterminés arbitrairement, comment decider des "bonnes valeurs" ?
+samplingFrequency = 12000 #nombres determines arbitrairement, comment decider des "bonnes valeurs" ?
 samplingPeriod = 1 / samplingFrequency
 		
 encodedText = encodeText( getTextToTransmit() )
