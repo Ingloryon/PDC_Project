@@ -29,19 +29,20 @@ def waveformFormer( encodedText ):
         else:
             waves.append(sinusoid(4000, sampleNb, samplingPeriod))
             
-    return np.ravel(np.array(waves))
+    
+    return np.ravel(np.array(waves)).astype("str") 
 
 # Takes a string and writes it in the file corresponding to the channel input
 def writeChannelInput( output ):
 	with open("files/channel_input.txt", "w") as f:
-		f.write(output)
+		f.write("\n".join(output))
 
 sampleNb = 100 
 samplingFrequency = 12000 #nombres determines arbitrairement, comment decider des "bonnes valeurs" ?
 samplingPeriod = 1 / samplingFrequency
 		
 encodedText = encodeText( getTextToTransmit() )
-writeChannelInput( waveformFormer(encodedText).astype("str") )
+writeChannelInput( waveformFormer(encodedText) )
 
 # TODO: How do we want to transmit our characters ? 
 #-> sampling freq / period
