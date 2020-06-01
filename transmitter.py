@@ -27,7 +27,7 @@ def waveformFormer( encodedText ):
         if bit == 0:
             waves.append(sinusoid(2000, sampleNb, samplingPeriod))
         else:
-            waves.append(sinusoid(4000, sampleNb, samplingPeriod))
+            waves.append(sinusoid(8000, sampleNb, samplingPeriod))
             
     
     return np.ravel(np.array(waves)).astype("str") 
