@@ -22,8 +22,13 @@ def decoder( bitArray ):
 	binaryResult = np.array(binaryResult)
 
 	print(binaryResult)
+	print(len(binaryResult))
 
-	decoded = np.packbits(binaryResult.reshape(-1, 8)).tostring().decode("utf-8")
+	binary_decoded = np.packbits(binaryResult.reshape(-1, 8)).tostring()
+
+	print(binary_decoded)
+
+	decoded = binary_decoded.decode("utf-8")
 
 	with open("output.txt", "w") as f:
 	        f.write(decoded)
