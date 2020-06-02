@@ -8,8 +8,9 @@ def getChannelOutput():
 def decoder( bitArray ):
 	binaryResult = []
 	size = len(bitArray)
+	iterations = int(size / SAMPLES_PER_BIT)
 
-	for i in range(0, size, SAMPLES_PER_BIT):
+	for i in range(0, iterations):
 		bit = bitArray[i*SAMPLES_PER_BIT: (i+1)*SAMPLES_PER_BIT].astype(np.float)
 		bitMean = bit.sum() / SAMPLES_PER_BIT
 
@@ -20,11 +21,12 @@ def decoder( bitArray ):
 
 	binaryResult = np.array(binaryResult)
 
+	print(binaryResult)
+
 	decoded = np.packbits(binaryResult.reshape(-1, 8)).tostring().decode("utf-8")
 
 	with open("output.txt", "w") as f:
 	        f.write(decoded)
-
 
 SAMPLES_PER_BIT = 78 
 
