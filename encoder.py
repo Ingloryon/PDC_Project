@@ -22,7 +22,10 @@ def tupleFormer( encodedText ):
     
     for bit in encodedText:
         for i in range(0, SAMPLES_PER_BIT):
-        	repeated_bits.append(bit);
+        	if(bit == 0):
+        		repeated_bits.append(-1);
+        	else:
+        		repeated_bits.append(1);
     
     return np.ravel(np.array(repeated_bits)).astype("str") 
 
