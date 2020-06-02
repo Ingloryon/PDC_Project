@@ -23,7 +23,6 @@ def addCalibrationZeros(k,bits):
 def writeChannelInput(bits):
     with open("encoded.txt", "w") as f:
         stringToSend = "\n".join(map(lambda bit:str(int(bit)),bits))
-        #stringToSend = stringToSend[:-1]
         f.write(stringToSend)
 
 MAX_SIZE=51200
@@ -33,11 +32,10 @@ ENCODER_FACTOR=2
 NB_FINAL_DUMMY_BITS=2
 BITS_ARRAY_SIZE=(NB_BYTES*BITS_PER_BYTES+NB_FINAL_DUMMY_BITS)*ENCODER_FACTOR
 
-#for a mysterious reason the pipe cannot handle 51200 bits therefore we substract one on the repetition to lower our value
-REPETITION_OFFSET=0
-
-REPEAT_FACTOR= MAX_SIZE//(BITS_ARRAY_SIZE)-1-REPETITION_OFFSET
+REPEAT_FACTOR= MAX_SIZE//(BITS_ARRAY_SIZE)-1
 
 CALIBRATION_SIZE=BITS_ARRAY_SIZE
 
 x=addCalibrationZeros(CALIBRATION_SIZE,scaleArrayKTimes(REPEAT_FACTOR,convoluteEncoding(encodeText(getTextToTransmit()))))
+
+writeChannelInput(x)
