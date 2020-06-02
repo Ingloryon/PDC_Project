@@ -34,6 +34,6 @@ def decoder( bitArray ):
 	with open("output.txt", "w") as f:
 	    f.write("".join(decoded))
 
-SAMPLES_PER_BIT = 78 
+SAMPLES_PER_BIT = 79
 
 decoder( getChannelOutput() )

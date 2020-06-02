@@ -38,7 +38,7 @@ def writeChannelInput( output ):
 		f.write(stringToSend)
 
 
-SAMPLES_PER_BIT = 78 
+SAMPLES_PER_BIT = 79
 
 encodedText = encodeText( getTextToTransmit() )
 writeChannelInput( tupleFormer(encodedText) )
