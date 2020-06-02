@@ -10,7 +10,7 @@ def encodeText( text ):
     return np.unpackbits(bytearray(text,"utf-8"))
 
 def convoluteEncoding(bits):
-    b=[1,1]+list(map(lambda x:(x-0.5)*2,bits))
+    b=[1,1]+list(map(lambda x:(x-0.5)*2,bits))+[1,1]
     x=[xi for j in range(2,len(b)) for xi in [b[j]*b[j-2],b[j]*b[j-1]*b[j-2]]]
     return x
 
@@ -30,12 +30,14 @@ MAX_SIZE=51200
 NB_BYTES=80
 BITS_PER_BYTES=8
 ENCODER_FACTOR=2
-BITS_ARRAY_SIZE=NB_BYTES*BITS_PER_BYTES*ENCODER_FACTOR
+NB_FINAL_DUMMY_BITS=2
+BITS_ARRAY_SIZE=(NB_BYTES*BITS_PER_BYTES+NB_FINAL_DUMMY_BITS)*ENCODER_FACTOR
 
-REPEAT_FACTOR= MAX_SIZE//(BITS_ARRAY_SIZE)-2
+#for a mysterious reason the pipe cannot handle 51200 bits therefore we substract one on the repetition to lower our value
+REPETITION_OFFSET=0
+
+REPEAT_FACTOR= MAX_SIZE//(BITS_ARRAY_SIZE)-1-REPETITION_OFFSET
 
 CALIBRATION_SIZE=BITS_ARRAY_SIZE
 
 x=addCalibrationZeros(CALIBRATION_SIZE,scaleArrayKTimes(REPEAT_FACTOR,convoluteEncoding(encodeText(getTextToTransmit()))))
-
-writeChannelInput(x)
