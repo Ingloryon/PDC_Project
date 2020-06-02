@@ -2,8 +2,8 @@ import numpy as np
 
 output = []
 
-for i in range(0,50000):
-	output.append(0)
+for i in range(0,70):
+	output.append(1)
 
 output = np.ravel(np.array(output)).astype("str") 
 
