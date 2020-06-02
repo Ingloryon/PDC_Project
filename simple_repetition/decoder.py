@@ -21,17 +21,18 @@ def decoder( bitArray ):
 
 	binaryResult = np.array(binaryResult)
 
-	print(binaryResult)
-	print(len(binaryResult))
+	binary_decoded = np.packbits(binaryResult.reshape(-1, 8)) 
 
-	binary_decoded = np.packbits(binaryResult.reshape(-1, 8)).tostring()
-
-	print(binary_decoded)
-
-	decoded = binary_decoded.decode("utf-8")
+	decoded = []
+	for i in range(0, len(binary_decoded)):
+		try:
+			char = binary_decoded[i].tostring().decode("utf-8")
+			decoded.append(char)
+		except UnicodeDecodeError:
+			decoded.append("0")
 
 	with open("output.txt", "w") as f:
-	        f.write(decoded)
+	    f.write("".join(decoded))
 
 SAMPLES_PER_BIT = 78 
 
