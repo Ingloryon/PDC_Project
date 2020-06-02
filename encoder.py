@@ -33,12 +33,12 @@ def tupleFormer( encodedText ):
 # Takes a string and writes it in the file corresponding to the channel input
 def writeChannelInput( output ):
 	with open("encoded.txt", "w") as f:
-		f.write("\n".join(output))
+		stringToSend = "\n".join(output)
+		#stringToSend = stringToSend[:-1]
+		f.write(stringToSend)
 
 
 SAMPLES_PER_BIT = 78 
 
 encodedText = encodeText( getTextToTransmit() )
 writeChannelInput( tupleFormer(encodedText) )
-
-
