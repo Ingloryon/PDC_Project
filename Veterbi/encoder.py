@@ -22,7 +22,7 @@ def addCalibrationZeros(k,bits):
 
 def writeChannelInput(bits):
     with open("encoded.txt", "w") as f:
-        stringToSend = "\n".join(map(lambda bit:str(bit),bits))
+        stringToSend = "\n".join(map(lambda bit:str(int(bit)),bits))
         #stringToSend = stringToSend[:-1]
         f.write(stringToSend)
 
